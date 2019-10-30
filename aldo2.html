@@ -5,162 +5,169 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Venues N' Bites</title>
 </head>
 
 <body>
-    <!-- Artist Select Box -->
-    <form id="artist-form">
 
-        <!-- Label for Text Box -->
-        <label for="artist-input">Choose Your Artist</label>
 
-        <!-- Text Input Box -->
-        <input type="text" id="artist-input"><br>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Venues N' Bites</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" id="artist-input" type="search" placeholder="Search artists and bands"
+                aria-label="Search">
+            <button class="btn btn-outline-info my-2 my-sm-0" id="select-artist" type="submit">Search</button>
+        </form>
+        </div>
+    </nav>
 
-        <!-- Submit Button -->
-        <input id="select-artist" type="submit" value="GO!">
-    </form>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block" src="../Anticks/assets/images/band1.jpeg" alt="First slide">
+                <div class="container1">
+                    <div class="carousel-caption text-center">
+                        <h1>Have an artist you've been dying to see?</h1>
+                        <p>Search the artist or band you want to see to get a list of their venues!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block" src="../Anticks/assets/images/city1.jpeg" alt="Second slide">
+                <div id="container1">
+                    <div class="carousel-caption text-center">
+                        <h1>Choose the city you want to see them in</h1>
+                        <p>You will be able to pick from a list of cuisine types around the location of the venue.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block" src="../Anticks/assets/images/food1.jpeg" alt="Third slide">
+                <div class="container1">
+                    <div class="carousel-caption text-center">
+                        <h1>Browse restaurants around selected venues</h1>
+                        <p> Get dinner, drinks, or dessert the night of the concert! </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+
+
+
+    <div class="container marketing">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h2 id="findartists">Find restaurants around their concerts!</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card border-dark mb-3" style="max-width: 18rem;">
+                    <img class="card-img-top"
+                        src="https://yt3.ggpht.com/a/AGF-l78g8jP2oznmRKteVHzbBrFQ9PgQsd2tj6N-5g=s900-c-k-c0xffffffff-no-rj-mo"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h2 id="artist1">Billie Eilish</h2>
+                        <p><a class="btn btn-secondary ab" href="#" role="button">Seach their venues »</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card border-dark mb-3" style="max-width: 18rem;">
+                    <img class="card-img-top" src="https://photos.bandsintown.com/thumb/8669790.jpeg"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h2 id="artist1">Ariana Grande</h2>
+                        <p><a class="btn btn-secondary ab" href="#" role="button">Seach their venues »</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card border-dark mb-3" style="max-width: 18rem;">
+                    <img class="card-img-top" src="https://i.scdn.co/image/22590f4021a00d1cad0821cc46a54395960342ee"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h2 id="artist3">Bad Bunny</h2>
+                        <p><a class="btn btn-secondary ab" href="#" role="button">Seach their venues »</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div><!-- /.container -->
+
+    <div class="card 1">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+            <h1 class="card-title"></h1>
+            <div id="artist-div"></div>
+        </div>
+    </div>
 
     <!-- Artist Information -->
-    <div id="artist-div"></div>
-    <div id="cuisine-div"></div>
-    <div id="resturant-div"></div>
+    <div class="foodtypes">
+        <h1 id="ct"> Cuisine Types</h1>
+        <h3 id="ch">What are you in the mood for?</h3>
+        <div id="cuisine-div">
+        </div>
+    </div>
 
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Restaurant Choices</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="resturant-div"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/javascript/app.js"></script>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-    var x;
-    var y;
-
-    function searchBandsInTown(artist) {
-
-        // Querying the bandsintown api for the selected artist
-        var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events/" + "?app_id=test";
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            // console.log("bands in town ajax call return: " + response)
-            var venuesAvailable = response
-            for (i = 0; i < venuesAvailable.length; i++) {
-                var venueLat = venuesAvailable[i].venue.latitude;
-                var venueLong = venuesAvailable[i].venue.longitude;
-                var venueName = venuesAvailable[i].venue.city;
-                var venueDisplayArea = $("<div>");
-                var venueDisplay = $("<button>").html(venueName);
-                venueDisplay.attr("class", "venuecityButton")
-                // venueDisplay.attr("value", venueName)
-                venueDisplay.attr("data-lat", venueLat)
-                venueDisplay.attr("data-long", venueLong)
-                venueDisplayArea.append(venueDisplay);
-                $("#artist-div").append(venueDisplayArea)
-            }
-
-
-
-
-        });
-    }
-
-    $(document).on("click", ".venuecityButton", function () {
-        x = $(this).attr("data-lat")
-        y = $(this).attr("data-long")
-
-
-        $.ajax({
-            url: "https://developers.zomato.com/api/v2.1/cities?lat=" + x + "&lon=" + y + "&count=1",
-            method: "GET",
-            headers: {
-                "user-key": "488e32fe25c9ed9387b879aa94952c00"
-            }
-
-        }
-        ).then(function (turtles) {
-            // console.log("results of cities? "+turtles)
-            cityId = turtles.location_suggestions[0].id;
-            // cityID above variable logs the city ID of results form first ajax call
-            // below the cityID is used to retrieve cusine data
-            $.ajax({
-                url: "https://developers.zomato.com/api/v2.1/cuisines?city_id=" + cityId,
-                method: "GET",
-                headers: {
-                    "user-key": "488e32fe25c9ed9387b879aa94952c00"
-                }
-
-            }).then(function (result) {
-                var cusinesAvailable = result.cuisines;
-                // console.log(cusinesAvailable);
-                for (i = 0; i < cusinesAvailable.length; i++) {
-                    var cuisineName = cusinesAvailable[i].cuisine.cuisine_name;
-                    var cuisineDisplayArea = $("<div>");
-                    var cuisineDisplay = $("<button>").html(cuisineName);
-                    cuisineDisplay.attr("data-cuisine", cuisineName);
-                    cuisineDisplay.attr("class", "cuisineButton");
-                    cuisineDisplayArea.append(cuisineDisplay);
-                    $("#cuisine-div").append(cuisineDisplayArea);
-                }
-
-            });
-            // 
-
-        });
-    });
-
-    $(document).on("click", ".cuisineButton", function () {
-        z = $(this).attr("data-cuisine")
-        console.log(z);
-        $.ajax({
-            url: "https://developers.zomato.com/api/v2.1/search?lat=" + x + "&lon=" + y + "&cuisines=" + z,
-            method: "GET",
-            headers: {
-                "user-key": "488e32fe25c9ed9387b879aa94952c00"
-            }
-        }).then(function (resultOfCusinePerCity) {
-            $(".cuisineButton").hide();
-            restaurantsAvaialble = resultOfCusinePerCity.restaurants;
-            console.log(restaurantsAvaialble);
-            for (i = 0; i < restaurantsAvaialble.length; i++) {
-                var restaurantName = resultOfCusinePerCity.restaurants[i].restaurant.name;
-                var restaurantSchedule = resultOfCusinePerCity.restaurants[i].restaurant.timings;
-                var imgURL = resultOfCusinePerCity.restaurants[i].restaurant.featured_image;
-                var menuURL = resultOfCusinePerCity.restaurants[i].restaurant.menu_url;
-                var userRating = resultOfCusinePerCity.restaurants[i].restaurant.user_rating.aggregate_rating;
-                var image = $("<img>").attr("src", imgURL);
-                image.attr("height", "200px");
-                var restaurantNameDisplay = $("<h1>").html(restaurantName);
-                var restaurantScheduleDisplay = $("<p>").html(restaurantSchedule);
-                var restaurantMenuButtonDisplay = $("<button>").text(menuURL);
-                var restaurantUserRating = $("<p>").html("RATING: " + userRating + " STARS");
-                var restaurantDisplayArea = $("<div>");
-                restaurantDisplayArea.append(restaurantNameDisplay);
-                restaurantDisplayArea.append(image);
-                restaurantDisplayArea.append(restaurantUserRating);
-                restaurantDisplayArea.append(restaurantScheduleDisplay);
-                restaurantDisplayArea.append(restaurantMenuButtonDisplay);
-                $("#resturant-div").append(restaurantDisplayArea);
-
-            }
-            // console.log(resultOfCusinePerCity.restaurants[0].restaurant.name);
-
-        });
-
-
-    });
-
-
-
-    // Event handler for user clicking the select-artist button
-    $("#select-artist").on("click", function (event) {
-        // Preventing the button from trying to submit the form
-        event.preventDefault();
-        // Storing the artist name
-        var inputArtist = $("#artist-input").val().trim();
-
-        // Running the searchBandsInTown function(passing in the artist as an argument)
-        searchBandsInTown(inputArtist);
-    });
-
-</script>
 
 </html>

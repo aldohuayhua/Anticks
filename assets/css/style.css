@@ -1,0 +1,79 @@
+.navbar-brand {
+    font-family: 'Righteous', cursive;
+    font-size: 25px;
+}
+#artist-input
+{
+    width: 400px;
+}
+.carousel
+{
+    height: 500px;
+    background-image: url("../images/carouselbackground.jpg") ;
+    background-size: contain;
+    margin-bottom:10px;
+}
+
+.d-block
+{
+    width: 60%;
+    height: 500px;
+    margin: auto;
+}
+
+.carousel-caption
+{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 60%;
+    margin: auto;
+    
+}
+
+.container {
+    margin-bottom:20px;
+}
+
+#findartists{
+    text-align: center;
+}
+h1 {
+    width: 90%;
+    margin: auto;
+}
+h2 {
+    text-align: center;
+}
+
+.foodPic {
+    width: 90%;
+    margin-left: 5%;
+
+}
+
+#resName {
+    text-align: center;
+}
+
+#cuisine-div {
+    column-count: 4;
+}
+
+.cuisineButton {
+    background-color: white;
+    font-family: 'Pacifico', cursive;
+    border: 2px solid #008CBA;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 25px;
+}
+#ct {
+    text-align: center;
+    padding: 20px;
+}
+#ch {
+    text-align: center;
+    padding: 10px;
+}
