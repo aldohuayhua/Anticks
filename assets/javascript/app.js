@@ -1,6 +1,10 @@
 
+$(".1").hide()
+
 var x;
 var y;
+var venueDisplayArea = $("<div>");
+
 
 function searchBandsInTown(artist) {
 
@@ -10,14 +14,19 @@ function searchBandsInTown(artist) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
+        $(".1").show()
+        $(".carousel").hide()
+        $(".container").hide()
         // console.log("bands in town ajax call return: " + response)
         var venuesAvailable = response
         for (i = 0; i < venuesAvailable.length; i++) {
             var venueLat = venuesAvailable[i].venue.latitude;
             var venueLong = venuesAvailable[i].venue.longitude;
             var venueName = venuesAvailable[i].venue.city;
-            var venueDisplayArea = $("<div>");
-            var venueDisplay = $("<button>").html(venueName);
+            var venueState = venuesAvailable[i].venue.region;
+            var venueCountry = venuesAvailable[i].venue.country;
+            // var venueDisplayArea = $("<div>");
+            var venueDisplay = $("<button>").html(venueName + "," + venueCountry);
             venueDisplay.attr("class", "venuecityButton")
             // venueDisplay.attr("s", venueName)
             venueDisplay.attr("data-lat", venueLat)
@@ -28,11 +37,29 @@ function searchBandsInTown(artist) {
 
 
 
-
     });
 }
 
+
+function searchArtist(artist) {
+    var queryArtistURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=test";
+    $.ajax({
+        url: queryArtistURL,
+        method: "GET"
+    }).then(function (response1) {
+        var artistName = response1.name;
+        $(".card-title").html(artistName)
+        var artistPic = response1.image_url;
+        var artist1image = $("<img class='artistPic'>").attr("src", artistPic);
+        artist1image.attr("height", "200px");
+        venueDisplayArea.prepend(artist1image)
+    })
+}
+
+
+
 $(document).on("click", ".venuecityButton", function () {
+    $(".1").hide()
     x = $(this).attr("data-lat")
     y = $(this).attr("data-long")
 
@@ -58,17 +85,20 @@ $(document).on("click", ".venuecityButton", function () {
             }
 
         }).then(function (result) {
+            console.log(result);
             var cusinesAvailable = result.cuisines;
             // console.log(cusinesAvailable);
             for (i = 0; i < cusinesAvailable.length; i++) {
                 var cuisineName = cusinesAvailable[i].cuisine.cuisine_name;
                 var cuisineDisplayArea = $("<div>");
-                var cuisineDisplay = $("<button>").html(cuisineName);
+                var cuisineDisplay = $("<button type='button' class='btn btn-primary cuisineb' data-toggle='modal' data-target='#exampleModalCenter'>").html(cuisineName);
                 cuisineDisplay.attr("data-cuisine", cuisineName);
                 cuisineDisplay.attr("class", "cuisineButton");
+
                 cuisineDisplayArea.append(cuisineDisplay);
                 $("#cuisine-div").append(cuisineDisplayArea);
             }
+
 
         });
         // 
@@ -86,7 +116,6 @@ $(document).on("click", ".cuisineButton", function () {
             "user-key": "488e32fe25c9ed9387b879aa94952c00"
         }
     }).then(function (resultOfCusinePerCity) {
-        $(".cuisineButton").hide();
         restaurantsAvaialble = resultOfCusinePerCity.restaurants;
         console.log(restaurantsAvaialble);
         for (i = 0; i < restaurantsAvaialble.length; i++) {
@@ -95,11 +124,13 @@ $(document).on("click", ".cuisineButton", function () {
             var imgURL = resultOfCusinePerCity.restaurants[i].restaurant.featured_image;
             var menuURL = resultOfCusinePerCity.restaurants[i].restaurant.menu_url;
             var userRating = resultOfCusinePerCity.restaurants[i].restaurant.user_rating.aggregate_rating;
-            var image = $("<img>").attr("src", imgURL);
+            var image = $("<img class='foodPic'>").attr("src", imgURL);
             image.attr("height", "200px");
-            var restaurantNameDisplay = $("<h1>").html(restaurantName);
+            var restaurantNameDisplay = $("<h1 id='resName'>").html(restaurantName);
             var restaurantScheduleDisplay = $("<p>").html(restaurantSchedule);
-            var restaurantMenuButtonDisplay = $("<button onclick='doRedirect()'>").text(menuURL);
+            var linkmenu = $("<a>")
+            linkmenu.attr("href", menuURL)
+            var restaurantMenuButtonDisplay = $("<button>").text("Menu");
             var restaurantUserRating = $("<p>").html("RATING: " + userRating + " STARS");
             var restaurantDisplayArea = $("<div>");
             restaurantDisplayArea.append(restaurantNameDisplay);
@@ -108,7 +139,6 @@ $(document).on("click", ".cuisineButton", function () {
             restaurantDisplayArea.append(restaurantScheduleDisplay);
             restaurantDisplayArea.append(restaurantMenuButtonDisplay);
             $("#resturant-div").append(restaurantDisplayArea);
-            function doRedirect() { location.replace(menuURL) }
         }
         // console.log(resultOfCusinePerCity.restaurants[0].restaurant.name);
     });
@@ -127,4 +157,5 @@ $("#select-artist").on("click", function (event) {
 
     // Running the searchBandsInTown function(passing in the artist as an argument)
     searchBandsInTown(inputArtist);
+    searchArtist(inputArtist)
 });
