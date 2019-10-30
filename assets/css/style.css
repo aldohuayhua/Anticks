@@ -87,4 +87,33 @@ h2 {
     width: 52%;
     margin: auto;
     height: 700px;
+    margin-top: 20px;
 }
+
+.famArt {
+    margin-top: 50px;
+    border: 2px solid #48a3b8;
+    border-radius: 25% 10%;
+    padding-top: 20px;
+}
+
+.footer {
+    border-top: 7px solid #48a3b8;
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    font-size: 11px;
+    padding-top: 30px;
+    padding-bottom: 2px;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    margin-top: 20px;
+  }
+
+  .rounded {
+      width: 208px;
+      height: 208px;
+  }

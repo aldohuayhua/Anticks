@@ -3,7 +3,7 @@ $(".one").hide()
 
 var x;
 var y;
-var venueDisplayArea = $("<div>");
+// var venueDisplayArea = $("<div>");
 
 
 function searchBandsInTown(artist) {
@@ -26,13 +26,12 @@ function searchBandsInTown(artist) {
             var venueState = venuesAvailable[i].venue.region;
             var venueCountry = venuesAvailable[i].venue.country;
             // var venueDisplayArea = $("<div>");
-            var venueDisplay =  $("<p>").html(    $("<button>").html(venueName + "," + venueCountry) );
+            var venueDisplay = $("<button>").html(venueName + "," + venueCountry)
             venueDisplay.attr("class", "venuecityButton")
             // venueDisplay.attr("s", venueName)
             venueDisplay.attr("data-lat", venueLat)
             venueDisplay.attr("data-long", venueLong)
-            venueDisplayArea.append(venueDisplay);
-            $("#artist-div").html(venueDisplayArea)
+            $("#artist-div").append(venueDisplay);
         }
 
 
@@ -48,11 +47,11 @@ function searchArtist(artist) {
         method: "GET"
     }).then(function (response1) {
         var artistName = response1.name;
-        $(".card-title").html(artistName)
+        $(".card-header").html(artistName)
         var artistPic = response1.image_url;
-        var artist1image = $("<img class='artistPic'>").attr("src", artistPic);
-        artist1image.attr("height", "200px");
-        venueDisplayArea.html(artist1image)
+        var artist1image = $("<img class='rounded float-left'>")
+        artist1image.attr("src", artistPic);
+        $(".art-img-div").html(artist1image)
     })
 }
 
@@ -159,6 +158,23 @@ $("#select-artist").on("click", function (event) {
     var inputArtist = $("#artist-input").val().trim();
 
     // Running the searchBandsInTown function(passing in the artist as an argument)
+    searchArtist(inputArtist);
+    searchBandsInTown(inputArtist);
+});
+
+$(".aone").on("click", function (event) {
+    var inputArtist = "Billie Eilish";
+    searchArtist(inputArtist);
+    searchBandsInTown(inputArtist);
+});
+$(".atwo").on("click", function (event) {
+    event.preventDefault();
+    var inputArtist = "Ariana Grande";
+    searchArtist(inputArtist);
+    searchBandsInTown(inputArtist);
+});
+$(".athree").on("click", function (event) {
+    var inputArtist = "Bad Bunny";
     searchArtist(inputArtist);
     searchBandsInTown(inputArtist);
 });
