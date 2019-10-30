@@ -55,25 +55,36 @@ h2 {
 }
 
 #cuisine-div {
-    column-count: 4;
+    column-count: 6;
 }
 
 .cuisineButton {
     background-color: white;
-    font-family: 'Pacifico', cursive;
-    border: 2px solid #008CBA;
-    width: 95%;
-    margin: auto;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    font-family: 'Lobster', cursive;
+    border: 2px solid white;
+    border-radius: 12px;
+    width: 80%;
+    margin: 10px auto;
     padding: 10px;
     font-size: 25px;
+}
+
+.foodtypes {
+    background-image: url("../images/food3.jpeg");
+    background-size: cover;
 }
 #ct {
     text-align: center;
     padding: 20px;
+    color: white;
 }
 #ch {
     text-align: center;
     padding: 10px;
+    color: white;
+}
+.one {
+    width: 51%;
+    margin: auto;
+    height: 700px;
 }
