@@ -8,8 +8,8 @@ var y;
 
 function searchBandsInTown(artist) {
     // Querying the bandsintown api for the selected artist
-
     $('body').css('background-image', 'url("assets/images/food6.jpeg")');
+    $("#artist-div").empty()
     var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events/" + "?app_id=test";
     $.ajax({
         url: queryURL,
@@ -29,8 +29,18 @@ function searchBandsInTown(artist) {
             var venueState = venuesAvailable[i].venue.region;
             var venueCountry = venuesAvailable[i].venue.country;
             var nameVenue = venuesAvailable[i].venue.name;
-            testDisplay.append(nameVenue);
-            var venueDisplay = $("<button>").html(venueCity + "," + venueCountry)
+            var artnameDisplay = $("<h3 id='named'>")
+            artnameDisplay.append(nameVenue)
+            testDisplay.append(artnameDisplay)
+            testDisplay.append("<br>")
+            testDisplay.append("<br>")
+            var date = venuesAvailable[i].datetime;
+            var dateDisplay = $("<h5 id='date'>")
+            dateDisplay.append(date)
+            testDisplay.append(dateDisplay)
+            testDisplay.append("<br>")
+            testDisplay.append("<br>")
+            var venueDisplay = $("<button>").html(venueCity + " " + venueState + "," +  " " + venueCountry)
             venueDisplay.attr("class", "venuecityButton")
             venueDisplay.attr("data-lat", venueLat)
             venueDisplay.attr("data-long", venueLong)
@@ -79,6 +89,7 @@ $(document).on("click", ".venuecityButton", function (e) {
 
     }
     ).then(function (turtles) {
+        $("#cuisine-div").empty()
         // console.log("results of cities? "+turtles)
         cityId = turtles.location_suggestions[0].id;
         // cityID above variable logs the city ID of results form first ajax call
