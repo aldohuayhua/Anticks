@@ -128,3 +128,10 @@ h2 {
 .venuecityButton {
     float: right;
 }
+
+#named {
+    float: right;
+}
+#date {
+    float: right;
+}
