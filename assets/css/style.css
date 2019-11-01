@@ -10,6 +10,7 @@
 {
     height: 500px;
     background-image: url("../images/carouselbackground.jpg") ;
+    /* background-image: url(../images/food6.jpeg); */
     background-size: contain;
     margin-bottom:10px;
 }
@@ -69,19 +70,18 @@ h2 {
     font-size: 25px;
 }
 
-.foodtypes {
+/* .foodtypes {
     background-image: url("../images/food3.jpeg");
     background-size: cover;
-}
+} */
 #ct {
     text-align: center;
     padding: 20px;
-    color: white;
+ 
 }
 #ch {
     text-align: center;
     padding: 10px;
-    color: white;
 }
 .one {
     width: 52%;
@@ -117,3 +117,14 @@ h2 {
       width: 208px;
       height: 208px;
   }
+
+.arts{
+    margin-left: 15px;
+}
+
+.card-body {
+    overflow: auto;
+}
+.venuecityButton {
+    float: right;
+}
