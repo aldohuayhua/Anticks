@@ -8,6 +8,8 @@ var y;
 
 function searchBandsInTown(artist) {
     // Querying the bandsintown api for the selected artist
+
+    $('body').css('background-image', 'url("assets/images/food6.jpeg")');
     var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events/" + "?app_id=test";
     $.ajax({
         url: queryURL,
@@ -19,21 +21,25 @@ function searchBandsInTown(artist) {
         $(".foodtypes").hide()
         // console.log("bands in town ajax call return: " + response)
         var venuesAvailable = response
+        var testDisplay = $("<div>")
         for (i = 0; i < venuesAvailable.length; i++) {
             var venueLat = venuesAvailable[i].venue.latitude;
             var venueLong = venuesAvailable[i].venue.longitude;
-            var venueName = venuesAvailable[i].venue.city;
+            var venueCity = venuesAvailable[i].venue.city;
             var venueState = venuesAvailable[i].venue.region;
             var venueCountry = venuesAvailable[i].venue.country;
-            // var venueDisplayArea = $("<div>");
-            var venueDisplay = $("<button>").html(venueName + "," + venueCountry)
+            var nameVenue = venuesAvailable[i].venue.name;
+            testDisplay.append(nameVenue);
+            var venueDisplay = $("<button>").html(venueCity + "," + venueCountry)
             venueDisplay.attr("class", "venuecityButton")
-            // venueDisplay.attr("s", venueName)
             venueDisplay.attr("data-lat", venueLat)
             venueDisplay.attr("data-long", venueLong)
-            $("#artist-div").append(venueDisplay);
+            testDisplay.append(venueDisplay)
+            testDisplay.append("<br>")
+            testDisplay.append("<hr>")
         }
 
+        $("#artist-div").append(testDisplay)
 
 
     });
@@ -57,9 +63,9 @@ function searchArtist(artist) {
 
 
 
-$(document).on("click", ".venuecityButton", function () {
-    $(".foodtypes").show()
-    $(".one").hide()
+$(document).on("click", ".venuecityButton", function (e) {
+    e.preventDefault();
+
     x = $(this).attr("data-lat")
     y = $(this).attr("data-long")
 
@@ -85,8 +91,15 @@ $(document).on("click", ".venuecityButton", function () {
             }
 
         }).then(function (result) {
+
+
+            $(".foodtypes").show()
+            $(".one").hide()
             console.log(result);
             var cusinesAvailable = result.cuisines;
+            console.log(cusinesAvailable)
+
+           
             // console.log(cusinesAvailable);
             for (i = 0; i < cusinesAvailable.length; i++) {
                 var cuisineName = cusinesAvailable[i].cuisine.cuisine_name;
@@ -101,7 +114,10 @@ $(document).on("click", ".venuecityButton", function () {
             }
 
 
+        },function (err) {
+            alert("no results")
         });
+        
         // 
 
     });
