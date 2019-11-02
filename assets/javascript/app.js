@@ -19,7 +19,6 @@ function searchBandsInTown(artist) {
         $(".carousel").hide()
         $(".container").hide()
         $(".foodtypes").hide()
-        // console.log("bands in town ajax call return: " + response)
         var venuesAvailable = response
         var testDisplay = $("<div>")
         for (i = 0; i < venuesAvailable.length; i++) {
@@ -30,21 +29,31 @@ function searchBandsInTown(artist) {
             var venueCountry = venuesAvailable[i].venue.country;
             var nameVenue = venuesAvailable[i].venue.name;
             var artnameDisplay = $("<h3 id='named'>")
-            artnameDisplay.append(nameVenue)
+            artnameDisplay.append(nameVenue  + ", " + venueCity + ", " + venueState )
             testDisplay.append(artnameDisplay)
             testDisplay.append("<br>")
             testDisplay.append("<br>")
             var date = venuesAvailable[i].datetime;
+            var buyTixURL = venuesAvailable[i].offers[0].url;
+            var linkTix = $("<a id=tickets>")
+            linkTix.attr("href", buyTixURL)
+            linkTix.attr("class", "tixbutton");
+            linkTix.text("Get Tickets");
+            var buyTixButtonDisplay = linkTix
             var dateDisplay = $("<h5 id='date'>")
             dateDisplay.append(date)
             testDisplay.append(dateDisplay)
             testDisplay.append("<br>")
             testDisplay.append("<br>")
-            var venueDisplay = $("<button>").html(venueCity + " " + venueState + "," +  " " + venueCountry)
+            var venueDisplay = $("<button>").text("Cuisines Types")
             venueDisplay.attr("class", "venuecityButton")
             venueDisplay.attr("data-lat", venueLat)
             venueDisplay.attr("data-long", venueLong)
+            testDisplay.append(buyTixButtonDisplay)
+            testDisplay.append("<br>")
+            testDisplay.append("<br>")
             testDisplay.append(venueDisplay)
+            testDisplay.append("<br>")
             testDisplay.append("<br>")
             testDisplay.append("<hr>")
         }
@@ -90,7 +99,6 @@ $(document).on("click", ".venuecityButton", function (e) {
     }
     ).then(function (turtles) {
         $("#cuisine-div").empty()
-        // console.log("results of cities? "+turtles)
         cityId = turtles.location_suggestions[0].id;
         // cityID above variable logs the city ID of results form first ajax call
         // below the cityID is used to retrieve cusine data
@@ -106,12 +114,9 @@ $(document).on("click", ".venuecityButton", function (e) {
 
             $(".foodtypes").show()
             $(".one").hide()
-            console.log(result);
             var cusinesAvailable = result.cuisines;
-            console.log(cusinesAvailable)
 
-           
-            // console.log(cusinesAvailable);
+
             for (i = 0; i < cusinesAvailable.length; i++) {
                 var cuisineName = cusinesAvailable[i].cuisine.cuisine_name;
                 var cuisineDisplayArea = $("<div>");
@@ -125,10 +130,11 @@ $(document).on("click", ".venuecityButton", function (e) {
             }
 
 
-        },function (err) {
-            alert("no results")
+        }, function (err) {
+            alert("No restaurants listed in the city you've selected please try another city")
+
         });
-        
+
         // 
 
     });
@@ -136,7 +142,6 @@ $(document).on("click", ".venuecityButton", function (e) {
 
 $(document).on("click", ".cuisineButton", function () {
     z = $(this).attr("data-cuisine")
-    console.log(z);
     $.ajax({
         url: "https://developers.zomato.com/api/v2.1/search?lat=" + x + "&lon=" + y + "&cuisines=" + z,
         method: "GET",
@@ -145,8 +150,6 @@ $(document).on("click", ".cuisineButton", function () {
         }
     }).then(function (resultOfCusinePerCity) {
         restaurantsAvaialble = resultOfCusinePerCity.restaurants;
-        console.log("lat: " + x);
-        console.log("lon: " + y);
         for (i = 0; i < restaurantsAvaialble.length; i++) {
             var restaurantName = resultOfCusinePerCity.restaurants[i].restaurant.name;
             var restaurantSchedule = resultOfCusinePerCity.restaurants[i].restaurant.timings;
@@ -159,7 +162,9 @@ $(document).on("click", ".cuisineButton", function () {
             var restaurantScheduleDisplay = $("<p>").html(restaurantSchedule);
             var linkmenu = $("<a>")
             linkmenu.attr("href", menuURL)
-            var restaurantMenuButtonDisplay = $("<button>").text("Menu");
+            linkmenu.attr("class", "menubutton");
+            console.log(linkmenu);
+            var restaurantMenuButtonDisplay = linkmenu.text("Menu");
             var restaurantUserRating = $("<p>").html("RATING: " + userRating + " STARS");
             var restaurantDisplayArea = $("<div>");
             restaurantDisplayArea.append(restaurantNameDisplay);
@@ -169,7 +174,6 @@ $(document).on("click", ".cuisineButton", function () {
             restaurantDisplayArea.append(restaurantMenuButtonDisplay);
             $("#resturant-div").append(restaurantDisplayArea);
         }
-        // console.log(resultOfCusinePerCity.restaurants[0].restaurant.name);
     });
 
 
@@ -188,6 +192,7 @@ $("#select-artist").on("click", function (event) {
     searchArtist(inputArtist);
     searchBandsInTown(inputArtist);
 });
+
 
 $(".aone").on("click", function (event) {
     var inputArtist = "Billie Eilish";

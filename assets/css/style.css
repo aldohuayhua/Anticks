@@ -131,7 +131,17 @@ h2 {
 
 #named {
     float: right;
+    font-size: 20px;
 }
+#tickets {
+    float: right;
+}
+
 #date {
     float: right;
+    font-size: 15px;
+}
+#cityDisplay{
+    float: right;
+ 
 }
